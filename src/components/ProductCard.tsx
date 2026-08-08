@@ -206,10 +206,10 @@ export default function ProductCard({ product, onUpdate }: Props) {
                 <XAxis dataKey="date" tick={{ fontSize: 10 }} />
                 <YAxis tick={{ fontSize: 10 }} domain={["auto", "auto"]} tickFormatter={(v) => `₹${(v/1000).toFixed(0)}k`} />
                 <Tooltip
-                  formatter={(val: number) => [formatPrice(val), "Price"]}
+                  formatter={(val) => [formatPrice(Number(val)), "Price"]}
                   labelFormatter={(_label, payload) => {
                     if (payload?.[0]?.payload) return `${payload[0].payload.date} ${payload[0].payload.time}`;
-                    return _label;
+                    return String(_label);
                   }}
                 />
                 <ReferenceLine y={product.targetPrice} stroke="#ef4444" strokeDasharray="4 4" label={{ value: "Target", fontSize: 10, fill: "#ef4444" }} />
